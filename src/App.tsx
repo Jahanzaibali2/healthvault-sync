@@ -10,11 +10,12 @@ import Dashboard from "./pages/Dashboard";
 import Records from "./pages/Records";
 import Vitals from "./pages/Vitals";
 import Profile from "./pages/Profile";
+import Documentation from "./pages/Documentation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
+function ProtectedRoute({ children }: { children: any }) {
   const { user, loading } = useAuth();
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-background"><div className="animate-pulse text-muted-foreground">Loading...</div></div>;
   if (!user) return <Navigate to="/auth" replace />;
@@ -36,6 +37,7 @@ function AppRoutes() {
         <Route path="/records" element={<Records />} />
         <Route path="/vitals" element={<Vitals />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/documentation" element={<Documentation />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

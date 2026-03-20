@@ -15,18 +15,18 @@ export function AppLayout() {
           <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-auto">
             <Outlet />
           </main>
-          <footer className="border-t border-white/10 bg-black px-6 py-4 text-white">
+          <footer className="border-t border-primary/10 bg-gradient-to-r from-white via-sky-50/80 to-cyan-50/80 px-6 py-4 text-foreground">
             <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/20">
-                  <HeartPulse className="h-4 w-4 text-white" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary/15 to-accent/20 ring-1 ring-primary/20">
+                  <HeartPulse className="h-4 w-4 text-primary" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold tracking-wide">Health Vault</p>
-                  <p className="text-xs text-white/70">Clinical Dashboard</p>
+                  <p className="text-xs text-muted-foreground">Clinical Dashboard</p>
                 </div>
               </div>
-              <p className="text-xs text-white/60">Securely managing your health data</p>
+              <p className="text-xs text-muted-foreground">Securely managing your health data</p>
             </div>
           </footer>
         </div>

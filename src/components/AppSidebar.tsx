@@ -1,4 +1,4 @@
-import { LayoutDashboard, FolderHeart, Activity, UserCircle, LogOut, HeartPulse } from "lucide-react";
+import { LayoutDashboard, FolderHeart, Activity, UserCircle, LogOut, HeartPulse, FileText } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -20,6 +20,7 @@ const navItems = [
   { title: "Records", url: "/records", icon: FolderHeart },
   { title: "Vitals", url: "/vitals", icon: Activity },
   { title: "Profile", url: "/profile", icon: UserCircle },
+  { title: "Documentation", url: "/documentation", icon: FileText },
 ];
 
 export function AppSidebar() {
