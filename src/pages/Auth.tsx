@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Shield, Heart, Stethoscope, Activity, FileHeart } from "lucide-react";
+import { Shield, Heart, Stethoscope, Activity, FileHeart, HeartPulse } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import authImage from "@/assets/auth-medical.jpg";
 
@@ -45,127 +45,136 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex bg-background">
-      {/* Left — Image Panel */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <img
-          src={authImage}
-          alt="Healthcare professional in a modern clinic"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        {/* Overlay content */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        <div className="relative z-10 flex flex-col justify-end p-12 pb-16 text-white">
-          <div className="space-y-6 max-w-md">
-            <h2 className="text-3xl font-semibold leading-tight tracking-tight" style={{ lineHeight: "1.15" }}>
-              Your health records,<br />always within reach.
-            </h2>
-            <p className="text-white/80 text-base leading-relaxed">
-              Securely store, track, and manage your medical history — all in one place.
-            </p>
-            <div className="flex gap-6 pt-2">
-              <div className="flex items-center gap-2 text-sm text-white/70">
-                <Stethoscope className="w-4 h-4" />
-                <span>Records</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-white/70">
-                <Activity className="w-4 h-4" />
-                <span>Vitals</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-white/70">
-                <FileHeart className="w-4 h-4" />
-                <span>Reports</span>
+    <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex flex-1">
+        <div className="relative hidden overflow-hidden lg:flex lg:w-1/2">
+          <img
+            src={authImage}
+            alt="Healthcare professional in a modern clinic"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="relative z-10 flex flex-col justify-end p-12 pb-16 text-white">
+            <div className="max-w-md space-y-6">
+              <h2 className="text-3xl font-semibold leading-tight tracking-tight" style={{ lineHeight: "1.15" }}>
+                Your health records,<br />always within reach.
+              </h2>
+              <p className="text-base leading-relaxed text-white/80">
+                Securely store, track, and manage your medical history — all in one place.
+              </p>
+              <div className="flex gap-6 pt-2">
+                <div className="flex items-center gap-2 text-sm text-white/70">
+                  <Stethoscope className="h-4 w-4" />
+                  <span>Records</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-white/70">
+                  <Activity className="h-4 w-4" />
+                  <span>Vitals</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-white/70">
+                  <FileHeart className="h-4 w-4" />
+                  <span>Reports</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Right — Form Panel */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-10">
-        <div className="w-full max-w-sm space-y-8">
-          {/* Logo & Title */}
-          <div className="space-y-2">
-            <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-primary/10">
-              <Heart className="w-5 h-5 text-primary" />
+        <div className="flex flex-1 items-center justify-center p-6 sm:p-10">
+          <div className="w-full max-w-sm space-y-8">
+            <div className="space-y-2">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
+                <Heart className="h-5 w-5 text-primary" />
+              </div>
+              <h1 className="text-xl font-semibold tracking-tight text-foreground">
+                {isSignUp ? "Create your account" : "Welcome back"}
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                {isSignUp
+                  ? "Start managing your health records securely."
+                  : "Sign in to access your health dashboard."}
+              </p>
             </div>
-            <h1 className="text-xl font-semibold tracking-tight text-foreground">
-              {isSignUp ? "Create your account" : "Welcome back"}
-            </h1>
-            <p className="text-muted-foreground text-sm">
-              {isSignUp
-                ? "Start managing your health records securely."
-                : "Sign in to access your health dashboard."}
-            </p>
-          </div>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {isSignUp && (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {isSignUp && (
+                <div className="space-y-1.5">
+                  <Label htmlFor="fullName" className="text-sm font-medium">Full Name</Label>
+                  <Input
+                    id="fullName"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="Dr. Sarah Mitchell"
+                    required
+                    className="h-11"
+                  />
+                </div>
+              )}
               <div className="space-y-1.5">
-                <Label htmlFor="fullName" className="text-sm font-medium">Full Name</Label>
+                <Label htmlFor="email" className="text-sm font-medium">Email</Label>
                 <Input
-                  id="fullName"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Dr. Sarah Mitchell"
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
                   required
                   className="h-11"
                 />
               </div>
-            )}
-            <div className="space-y-1.5">
-              <Label htmlFor="email" className="text-sm font-medium">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                required
-                className="h-11"
-              />
-            </div>
-            <div className="space-y-1.5">
-              <Label htmlFor="password" className="text-sm font-medium">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-                minLength={6}
-                className="h-11"
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full h-11 mt-2 active:scale-[0.98] transition-transform"
-              disabled={submitting}
-            >
-              {submitting ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
-            </Button>
-          </form>
+              <div className="space-y-1.5">
+                <Label htmlFor="password" className="text-sm font-medium">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  minLength={6}
+                  className="h-11"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="mt-2 h-11 w-full transition-transform active:scale-[0.98]"
+                disabled={submitting}
+              >
+                {submitting ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
+              </Button>
+            </form>
 
-          {/* Toggle */}
-          <div className="text-center">
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              {isSignUp ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
-            </button>
-          </div>
+            <div className="text-center">
+              <button
+                type="button"
+                onClick={() => setIsSignUp(!isSignUp)}
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                {isSignUp ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
+              </button>
+            </div>
 
-          {/* Footer */}
-          <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground pt-4">
-            <Shield className="w-3.5 h-3.5" />
-            <span>Your data is encrypted and stored securely</span>
+            <div className="flex items-center justify-center gap-2 pt-4 text-xs text-muted-foreground">
+              <Shield className="h-3.5 w-3.5" />
+              <span>Your data is encrypted and stored securely</span>
+            </div>
           </div>
         </div>
       </div>
+      <footer className="border-t border-white/10 bg-black px-6 py-4 text-white">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/20">
+              <HeartPulse className="h-4 w-4 text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold tracking-wide">Health Vault</p>
+              <p className="text-xs text-white/70">Clinical Dashboard</p>
+            </div>
+          </div>
+          <p className="text-xs text-white/60">Securely managing your health data</p>
+        </div>
+      </footer>
     </div>
   );
 }

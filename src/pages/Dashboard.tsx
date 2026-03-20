@@ -35,17 +35,17 @@ export default function Dashboard() {
   const firstName = user?.user_metadata?.full_name?.split(" ")[0] || "there";
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Welcome back, {firstName}</h1>
-        <p className="text-muted-foreground mt-1">Here's an overview of your health records</p>
+    <div className="mx-auto max-w-5xl space-y-8 rounded-3xl bg-gradient-to-br from-slate-50/70 via-sky-50/50 to-cyan-50/50 p-4 md:p-6">
+      <div className="rounded-2xl border border-primary/10 bg-white/85 p-6 shadow-sm backdrop-blur-sm">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">Welcome back, {firstName}</h1>
+        <p className="mt-1 text-sm text-foreground/70">Here&apos;s an overview of your health records</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Link to="/records">
-          <Card className="hover:shadow-md transition-shadow cursor-pointer border-border/50">
+          <Card className="cursor-pointer border-primary/10 bg-gradient-to-br from-white to-sky-50/70 transition-all hover:-translate-y-0.5 hover:shadow-md">
             <CardContent className="p-5 flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 ring-1 ring-primary/15 flex items-center justify-center">
                 <FileText className="w-5 h-5 text-primary" />
               </div>
               <div>
@@ -57,9 +57,9 @@ export default function Dashboard() {
         </Link>
 
         <Link to="/vitals">
-          <Card className="hover:shadow-md transition-shadow cursor-pointer border-border/50">
+          <Card className="cursor-pointer border-success/20 bg-gradient-to-br from-white to-emerald-50/70 transition-all hover:-translate-y-0.5 hover:shadow-md">
             <CardContent className="p-5 flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-success/10 ring-1 ring-success/20 flex items-center justify-center">
                 <Activity className="w-5 h-5 text-success" />
               </div>
               <div>
@@ -70,9 +70,9 @@ export default function Dashboard() {
           </Card>
         </Link>
 
-        <Card className="border-border/50">
+        <Card className="border-accent/20 bg-gradient-to-br from-white to-cyan-50/70">
           <CardContent className="p-5 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-accent/10 ring-1 ring-accent/20 flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-accent" />
             </div>
             <div>
@@ -83,8 +83,7 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      {/* Privacy card */}
-      <Card className="border-primary/20 bg-primary/[0.03]">
+      <Card className="border-primary/20 bg-gradient-to-r from-primary/[0.06] to-accent/[0.06]">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />

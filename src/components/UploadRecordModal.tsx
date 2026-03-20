@@ -90,7 +90,7 @@ export function UploadRecordModal({ open, onOpenChange }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md border-primary/20 bg-gradient-to-b from-white to-sky-50/50">
         <DialogHeader>
           <DialogTitle>Upload New Record</DialogTitle>
           <DialogDescription>Add a health document to your secure vault</DialogDescription>
@@ -131,7 +131,7 @@ export function UploadRecordModal({ open, onOpenChange }: Props) {
             />
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-muted-foreground bg-secondary/50 p-3 rounded-lg">
+          <div className="flex items-center gap-2 rounded-lg border border-primary/10 bg-primary/[0.04] p-3 text-xs text-muted-foreground">
             <Shield className="w-3.5 h-3.5 shrink-0" />
             <span>Your file is encrypted and stored securely. Only you can access it.</span>
           </div>

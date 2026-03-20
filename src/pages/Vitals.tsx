@@ -80,13 +80,13 @@ export default function Vitals() {
   const getLabel = (type: string) => VITAL_TYPES.find((t) => t.value === type)?.label || type;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="mx-auto max-w-5xl space-y-6 rounded-3xl bg-gradient-to-br from-slate-50/70 via-emerald-50/40 to-cyan-50/45 p-4 md:p-6">
       <div className="flex items-center justify-between">
-        <div>
+        <div className="rounded-2xl border border-success/20 bg-white/85 p-5 shadow-sm backdrop-blur-sm">
           <h1 className="text-2xl font-semibold tracking-tight">Vitals</h1>
-          <p className="text-muted-foreground mt-1">Track your health measurements</p>
+          <p className="mt-1 text-sm text-foreground/70">Track your health measurements</p>
         </div>
-        <Button onClick={() => setAddOpen(true)}>
+        <Button onClick={() => setAddOpen(true)} className="shadow-sm">
           <Plus className="w-4 h-4 mr-2" />
           Log Vital
         </Button>
@@ -99,9 +99,9 @@ export default function Vitals() {
           ))}
         </div>
       ) : vitals.length === 0 ? (
-        <Card className="border-dashed border-2 border-border">
+        <Card className="border-2 border-dashed border-success/25 bg-gradient-to-br from-white to-emerald-50/60">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="w-14 h-14 rounded-2xl bg-success/10 flex items-center justify-center mb-4">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-success/10 ring-1 ring-success/20">
               <Activity className="w-7 h-7 text-success" />
             </div>
             <h3 className="font-medium text-lg mb-1">No vitals logged</h3>
@@ -115,9 +115,12 @@ export default function Vitals() {
       ) : (
         <div className="space-y-2">
           {vitals.map((vital) => (
-            <Card key={vital.id} className="border-border/50">
+            <Card
+              key={vital.id}
+              className="border-success/15 bg-gradient-to-r from-white to-emerald-50/40 transition-all hover:-translate-y-0.5 hover:shadow-sm"
+            >
               <CardContent className="p-4 flex items-center gap-4">
-                <div className="w-9 h-9 rounded-lg bg-success/10 flex items-center justify-center shrink-0 text-success">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-success/10 text-success ring-1 ring-success/20">
                   {getIcon(vital.type)}
                 </div>
                 <div className="flex-1">
@@ -134,7 +137,7 @@ export default function Vitals() {
       )}
 
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
-        <DialogContent className="sm:max-w-sm">
+        <DialogContent className="sm:max-w-sm border-success/20 bg-gradient-to-b from-white to-emerald-50/40">
           <DialogHeader>
             <DialogTitle>Log Vital</DialogTitle>
           </DialogHeader>
