@@ -78,13 +78,13 @@ export default function Profile() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 rounded-3xl bg-gradient-to-br from-slate-50/70 via-sky-50/45 to-emerald-50/45 p-4 md:p-6">
-      <div className="rounded-2xl border border-primary/10 bg-white/85 p-5 shadow-sm backdrop-blur-sm">
+    <div className="max-w-2xl mx-auto space-y-6">
+      <div>
         <h1 className="text-2xl font-semibold tracking-tight">Profile</h1>
-        <p className="mt-1 text-sm text-foreground/70">Manage your personal health information</p>
+        <p className="text-muted-foreground mt-1">Manage your personal health information</p>
       </div>
 
-      <Card className="border-primary/10 bg-gradient-to-b from-white to-sky-50/30 shadow-sm">
+      <Card className="border-border/50">
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <UserCircle className="w-4 h-4" />
@@ -128,7 +128,7 @@ export default function Profile() {
               <Label>Allergies</Label>
               <Textarea value={allergies} onChange={(e) => setAllergies(e.target.value)} placeholder="List any known allergies" rows={3} />
             </div>
-            <Button type="submit" disabled={saving} className="shadow-sm">
+            <Button type="submit" disabled={saving}>
               <Save className="w-4 h-4 mr-2" />
               {saving ? "Saving..." : "Save Profile"}
             </Button>
@@ -136,7 +136,7 @@ export default function Profile() {
         </CardContent>
       </Card>
 
-      <div className="rounded-xl border border-border/60 bg-white/70 p-3 text-center text-xs text-muted-foreground shadow-sm">
+      <div className="text-center text-xs text-muted-foreground">
         <p>Email: {user?.email}</p>
       </div>
     </div>

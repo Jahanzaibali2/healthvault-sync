@@ -51,13 +51,13 @@ export default function Records() {
   };
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6 rounded-3xl bg-gradient-to-br from-slate-50/70 via-sky-50/45 to-cyan-50/45 p-4 md:p-6">
+    <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
-        <div className="rounded-2xl border border-primary/10 bg-white/85 p-5 shadow-sm backdrop-blur-sm">
+        <div>
           <h1 className="text-2xl font-semibold tracking-tight">Records Library</h1>
-          <p className="mt-1 text-sm text-foreground/70">Your secure digital health vault</p>
+          <p className="text-muted-foreground mt-1">Your secure digital health vault</p>
         </div>
-        <Button onClick={() => setUploadOpen(true)} className="shadow-sm">
+        <Button onClick={() => setUploadOpen(true)}>
           <Plus className="w-4 h-4 mr-2" />
           Upload Record
         </Button>
@@ -70,9 +70,9 @@ export default function Records() {
           ))}
         </div>
       ) : records.length === 0 ? (
-        <Card className="border-2 border-dashed border-primary/20 bg-gradient-to-br from-white to-sky-50/70">
+        <Card className="border-dashed border-2 border-border">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
               <FolderHeart className="w-7 h-7 text-primary" />
             </div>
             <h3 className="font-medium text-lg mb-1">No records yet</h3>
@@ -86,12 +86,9 @@ export default function Records() {
       ) : (
         <div className="space-y-3">
           {records.map((record) => (
-            <Card
-              key={record.id}
-              className="border-primary/10 bg-gradient-to-r from-white to-sky-50/40 transition-all hover:-translate-y-0.5 hover:shadow-md"
-            >
+            <Card key={record.id} className="border-border/50 hover:shadow-sm transition-shadow">
               <CardContent className="p-4 flex items-center gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 ring-1 ring-primary/15">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   {record.file_type ? getFileIcon(record.file_type) : <FileText className="w-4 h-4 text-primary" />}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -109,7 +106,7 @@ export default function Records() {
                     variant="ghost"
                     size="icon"
                     onClick={() => handleDownload(record.file_path!, record.file_name!)}
-                    className="shrink-0 rounded-lg hover:bg-primary/10"
+                    className="shrink-0"
                   >
                     <Download className="w-4 h-4" />
                   </Button>
