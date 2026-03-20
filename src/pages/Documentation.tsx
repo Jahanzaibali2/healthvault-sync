@@ -25,6 +25,7 @@ const deferredItems = [
   "Doctor sharing links, family accounts, Apple Health sync, offline mode",
 ];
 
+
 export default function Documentation() {
   return (
     <div className="mx-auto max-w-5xl space-y-6 rounded-3xl bg-gradient-to-br from-slate-50/70 via-sky-50/45 to-cyan-50/45 p-4 md:p-6">
