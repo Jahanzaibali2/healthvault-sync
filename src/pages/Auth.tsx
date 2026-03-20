@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Heart } from "lucide-react";
+import { Shield, Heart, HeartPulse } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Auth() {
@@ -45,61 +45,77 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="w-full max-w-md space-y-6">
-        <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-2">
-            <Heart className="w-7 h-7 text-primary" />
-          </div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">Healthcare App</h1>
-          <p className="text-muted-foreground text-sm">Your personal health records, securely managed</p>
-        </div>
-
-        <Card className="border-border/50 shadow-lg shadow-primary/5">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-lg">{isSignUp ? "Create Account" : "Welcome Back"}</CardTitle>
-            <CardDescription>
-              {isSignUp ? "Start managing your health records securely" : "Sign in to access your health records"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {isSignUp && (
-                <div className="space-y-2">
-                  <Label htmlFor="fullName">Full Name</Label>
-                  <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="John Doe" required />
-                </div>
-              )}
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required minLength={6} />
-              </div>
-              <Button type="submit" className="w-full" disabled={submitting}>
-                {submitting ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
-              </Button>
-            </form>
-
-            <div className="mt-4 text-center">
-              <button
-                type="button"
-                onClick={() => setIsSignUp(!isSignUp)}
-                className="text-sm text-primary hover:underline"
-              >
-                {isSignUp ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
-              </button>
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-50 via-sky-50/50 to-cyan-50/60">
+      <div className="flex flex-1 items-center justify-center p-4">
+        <div className="w-full max-w-md space-y-6">
+          <div className="rounded-2xl border border-primary/10 bg-white/90 p-5 text-center shadow-sm backdrop-blur-sm">
+            <div className="mb-2 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
+              <Heart className="w-7 h-7 text-primary" />
             </div>
-          </CardContent>
-        </Card>
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground">Healthcare App</h1>
+            <p className="text-sm text-foreground/70">Your personal health records, securely managed</p>
+          </div>
 
-        <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-          <Shield className="w-3.5 h-3.5" />
-          <span>Your data is encrypted and stored securely</span>
+          <Card className="border-primary/10 bg-white/90 shadow-lg shadow-primary/5 backdrop-blur-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg">{isSignUp ? "Create Account" : "Welcome Back"}</CardTitle>
+              <CardDescription>
+                {isSignUp ? "Start managing your health records securely" : "Sign in to access your health records"}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {isSignUp && (
+                  <div className="space-y-2">
+                    <Label htmlFor="fullName">Full Name</Label>
+                    <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="John Doe" required />
+                  </div>
+                )}
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required minLength={6} />
+                </div>
+                <Button type="submit" className="w-full" disabled={submitting}>
+                  {submitting ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
+                </Button>
+              </form>
+
+              <div className="mt-4 text-center">
+                <button
+                  type="button"
+                  onClick={() => setIsSignUp(!isSignUp)}
+                  className="text-sm text-primary hover:underline"
+                >
+                  {isSignUp ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
+                </button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="flex items-center justify-center gap-2 rounded-xl border border-border/60 bg-white/70 p-3 text-xs text-muted-foreground shadow-sm">
+            <Shield className="w-3.5 h-3.5" />
+            <span>Your data is encrypted and stored securely</span>
+          </div>
         </div>
       </div>
+      <footer className="border-t border-white/10 bg-black px-6 py-4 text-white">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/20">
+              <HeartPulse className="h-4 w-4 text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold tracking-wide">Health Vault</p>
+              <p className="text-xs text-white/70">Clinical Dashboard</p>
+            </div>
+          </div>
+          <p className="text-xs text-white/60">Securely managing your health data</p>
+        </div>
+      </footer>
     </div>
   );
 }
